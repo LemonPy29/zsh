@@ -4,7 +4,7 @@ function theme_precmd {
   PR_FILLBAR=""
   PR_PWDLEN=""
 
-  local promptsize=${#${(%):---(%n@%m:%l)---()--}}
+  local promptsize=${#${(%):---(✨✨✨@:%l)---()--}}
   local rubypromptsize=${#${(%)$(ruby_prompt_info)}}
   local pwdsize=${#${(%):-%~}}
 
@@ -82,10 +82,10 @@ fi
 # Decide if we need to set titlebar text.
 case $TERM in
   xterm*)
-    PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'
+    PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%~ |  %y\a%}'
     ;;
   screen)
-    PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %(!.-=[ROOT]=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\e\\%}'
+    PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %(!.-=[ROOT]=- | .)%~ }'
     ;;
   *)
     PR_TITLEBAR=""
@@ -104,7 +104,7 @@ PROMPT='${PR_SET_CHARSET}${PR_STITLE}${(e)PR_TITLEBAR}\
 ${PR_CYAN}${PR_ULCORNER}${PR_HBAR}${PR_GREY}(\
 ${PR_GREEN}%${PR_PWDLEN}<...<%~%<<\
 ${PR_GREY})$(ruby_prompt_info)${PR_CYAN}${PR_HBAR}${PR_HBAR}${(e)PR_FILLBAR}${PR_HBAR}${PR_GREY}(\
-${PR_CYAN}%(!.%SROOT%s.%n)${PR_GREY}@${PR_GREEN}%m:%l\
+${PR_CYAN}%(!.%SROOT%s.✨✨✨)${PR_GREY}@${PR_GREEN}:%l\
 ${PR_GREY})${PR_CYAN}${PR_HBAR}${PR_URCORNER}\
 
 ${PR_CYAN}${PR_LLCORNER}${PR_BLUE}${PR_HBAR}(\
